@@ -2,11 +2,12 @@
 #include <vector>
 #include "Utils.h"
 #include <algorithm>
+
 class ConvexHull
 {
 private:
 	ConvexHull() {
-		_points = { point(2.0, 5.0),point(0.0, 4.0),point(5.0, 4.0),point(3.0, 4.0),point(2.0, 3.0),point(2.0, 3.0),point(0.0,3.0),point(3.0,0.0),point(5.0,1.0) };
+		_points = { point(2.0, 5.0),point(0.0, 4.0),point(5.0, 4.0),point(3.0, 4.0),point(2.0, 3.0),point(0.0, 3.0),point(1.0,2.0),point(3.0,0.0),point(5.0,1.0) };
 	}
 
 	static ConvexHull* ins;
@@ -38,3 +39,6 @@ public:
 		return ret;
 	}
 };
+
+// 静态成员初始化
+ConvexHull* ConvexHull::ins = nullptr;
