@@ -19,6 +19,7 @@ private:
 		if (points.size() <= 1)
 			return;
 
+		// nlogn
 		std::sort(points.begin(), points.end(), [](point p1, point p2) {
 			return (!Equal(p1.x, p2.x)) ? p1.x < p2.x : p1.y < p2.y;
 			});
@@ -34,9 +35,42 @@ public:
 	}
 
 	std::vector<point> GetConvexHull(std::vector<point>& input) {
-		std::vector<point> ret(_points.begin(), _points.end());
-		point_sort(ret);
-		return ret;
+		int n = _points.size();
+		if (n <= 1) return _points;
+
+		std::vector<point> vec(_points.begin(), _points.end());
+		point_sort(vec);
+
+		//下凸包
+		std::vector<point> hull;
+		for (int i = 0; i < n; ++i)
+		{
+			// 最后两个点与新点形成非左转时，删除最后一个点
+			// 这里size的判断不要漏了＝
+			while (hull.size() >= 2 && cross(hull[hull.size() - 2], hull.back(), vec[i]) <= 0.0)
+			{
+				hull.pop_back();
+			}
+
+			hull.push_back(vec[i]);
+		}
+
+		//上凸包
+		int lower_size = hull.size();
+		for (int i = n - 2; i >= 0; --i)
+		{
+			// 处理非左转
+			while (hull.size() > lower_size && cross(hull[hull.size() - 2], hull.back(), vec[i]) <= 0)
+			{
+				hull.pop_back();
+			}
+			hull.push_back(vec[i]);
+		}
+		
+		//删除首尾重复的起点
+		if (hull.size() > 1) hull.pop_back();
+
+		return hull;
 	}
 };
 
