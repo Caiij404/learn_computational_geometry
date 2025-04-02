@@ -36,7 +36,13 @@ double cross(point& p1, point& p2)
 }
 
 // (p2 - p1) x (p3 - p2)
-double cross(point& p1, point& p2, point& p3)
+double cross1(point& p1, point& p2, point& p3)
 {
 	return (p2.x - p1.x) * (p3.y - p2.y) - (p2.y - p1.y) * (p3.x - p2.x);
+}
+
+// (p2 - p1) x (p3 - p1)
+double cross2(point& p1, point& p2, point& p3)
+{
+	return (p2.x - p1.x) * (p3.y - p1.y) - (p2.y - p1.y) * (p3.x - p1.x);
 }

@@ -10,7 +10,9 @@ int main()
     auto ins = ConvexHull::Get();
     if (!ins)
         return -1;
-    auto ret = ins->GetConvexHull(points);
+    auto ret1 = ins->GetConvexHull_Andrew(points);
+
+    auto ret2 = ins->GetConvexHull_Graham(points);
 
     return 0;
 }
