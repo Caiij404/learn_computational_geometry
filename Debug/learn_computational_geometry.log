@@ -1,0 +1,3 @@
+﻿  learn_computational_geometry.cpp
+D:\Fighting\learn_computational_geometry\Header\ConvexHull.h(63,23): warning C4018: “>”: 有符号/无符号不匹配
+  learn_computational_geometry.vcxproj -> D:\Fighting\learn_computational_geometry\Debug\learn_computational_geometry.exe

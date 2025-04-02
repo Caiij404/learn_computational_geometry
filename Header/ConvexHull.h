@@ -100,7 +100,11 @@ public:
 			auto ret = cross2(vec[0], p1, p2);
 			if (abs(ret) < ZERO_ERROR) // 共线则取距离小的
 			{
-				return p1.x - vec[0].x < p2.x - vec[0].x;
+				return (p1.x - vec[0].x)* (p1.x - vec[0].x) + (p1.y - vec[0].y) * (p1.y - vec[0].y) < (p2.x - vec[0].x)* (p2.x - vec[0].x) + (p2.y - vec[0].y) * (p2.y - vec[0].y);
+
+				//之前看b站视频的，偷懒也没细想。但这样判断距离大小是有问题的。
+				//会导致最后凸包结果错误
+				//return p1.x - vec[0].x < p2.x - vec[0].x;
 			}
 			else {
 				return ret > 0.0;
